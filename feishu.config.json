@@ -1,29 +1,29 @@
 {
-  "app_token": "XFiabvpAHat3X6sM6xIcDxGqnMg",
+  "app_token": "QXCNbFphZaopcXswieucGoIonEg",
   "tableIds": {
     "qingdan": {
       "name": "国标清单库",
-      "table_id": "tbloa9bq5D0vW1kM"
+      "table_id": "tbldgGDL6isKGFP0"
     },
     "cailiao": {
       "name": "材料库",
-      "table_id": "tblyqOQKWhuPUb0V"
+      "table_id": "tblZqIfewfQxCmg1"
     },
     "zhibiao": {
       "name": "指标库",
-      "table_id": "tblGTnGCOTLxR6E3"
+      "table_id": "tblE5prR4yfF52cu"
     },
     "dispute": {
       "name": "争议处理",
-      "table_id": "tblkbAKik8DtHRY6"
+      "table_id": "tblxSZd8jgv3z6Zg"
     },
     "lwjg": {
       "name": "劳务价格",
-      "table_id": "tblwCJrSghoudpsa"
+      "table_id": "tblAPi49Pqx2kFAm"
     },
     "gzbiaodan": {
       "name": "广州市场价",
-      "table_id": "tblt8YDwbZvfuKvV"
+      "table_id": "tbl4OxcbhBt0Bkh5"
     }
   },
   "app_id": "cli_aad8588c14789bc1"
