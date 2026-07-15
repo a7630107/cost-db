@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>造价数据库（原型）</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="toolbar">
+      <div class="brand">造价数据库 <span class="badge">原型</span></div>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="搜索清单编码 / 名称 / 描述...">
+        <button id="btnSearch">搜索</button>
+        <button id="btnClear">清除</button>
+      </div>
+      <div class="header-actions">
+        <button id="btnRefresh" class="btn-ghost">刷新数据</button>
+        <button id="btnExport" class="btn-export">导出 Excel</button>
+        <div class="status" id="statusText">就绪</div>
+      </div>
+    </header>
+
+    <nav class="tab-bar" id="tabBar"></nav>
+
+    <section class="context-bar">
+      <div class="context-badge" id="contextBadge">—</div>
+      <div class="context-hint" id="contextHint">—</div>
+      <div class="context-stats" id="contextStats">—</div>
+    </section>
+
+    <section class="table-wrap" id="tableWrap"></section>
+    <section class="calc-wrap" id="calcWrap" style="display:none;"></section>
+
+    <footer class="foot">示例原型 · 数据均为演示用，非真实造价 · 由 WorkBuddy 生成</footer>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
