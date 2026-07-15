@@ -1,0 +1,30 @@
+{
+  "app_token": "XFiabvpAHat3X6sM6xIcDxGqnMg",
+  "tableIds": {
+    "qingdan": {
+      "name": "国标清单库",
+      "table_id": "tbloa9bq5D0vW1kM"
+    },
+    "cailiao": {
+      "name": "材料库",
+      "table_id": "tblyqOQKWhuPUb0V"
+    },
+    "zhibiao": {
+      "name": "指标库",
+      "table_id": "tblGTnGCOTLxR6E3"
+    },
+    "dispute": {
+      "name": "争议处理",
+      "table_id": "tblkbAKik8DtHRY6"
+    },
+    "lwjg": {
+      "name": "劳务价格",
+      "table_id": "tblwCJrSghoudpsa"
+    },
+    "gzbiaodan": {
+      "name": "广州市场价",
+      "table_id": "tblt8YDwbZvfuKvV"
+    }
+  },
+  "app_id": "cli_aad8588c14789bc1"
+}
