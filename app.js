@@ -184,6 +184,67 @@
     });
   }
 
+  // —— 飞书同步（点刷新按钮时，触发 GitHub 工作流去飞书拉数据）——
+  const GH_OWNER = "a7630107";
+  const GH_REPO = "cost-db";
+  const GH_WF = "sync.yml";
+  const GH_TOKEN = (typeof window.GITHUB_SYNC_TOKEN !== "undefined") ? window.GITHUB_SYNC_TOKEN : "";
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  async function ghApi(path, opts) {
+    const res = await fetch("https://api.github.com" + path, Object.assign({
+      headers: {
+        "Authorization": "Bearer " + GH_TOKEN,
+        "Accept": "application/vnd.github+json",
+        "User-Agent": "cost-db-page",
+        "Content-Type": "application/json"
+      }
+    }, opts));
+    const t = await res.text();
+    let j = null; try { j = JSON.parse(t); } catch (e) {}
+    return { status: res.status, json: j, text: t };
+  }
+
+  // 点「刷新数据」：若有令牌 → 触发飞书同步；否则只刷新本地缓存
+  async function triggerSync() {
+    if (!GH_TOKEN || GH_TOKEN.indexOf("REPLACE_") === 0) {
+      setStatus("未配置同步令牌：仅刷新本地缓存");
+      return loadData();
+    }
+    setStatus("正在从飞书同步…（触发中）");
+    let r = await ghApi(
+      `/repos/${GH_OWNER}/${GH_REPO}/actions/workflows/${GH_WF}/dispatches`,
+      { method: "POST", body: JSON.stringify({ ref: "main" }) }
+    );
+    if (r.status !== 204 && r.status !== 200) {
+      setStatus("触发失败（" + r.status + "），改为刷新本地缓存");
+      return loadData();
+    }
+    setStatus("已触发同步，飞书数据拉取中…（约 30 秒）");
+    const start = Date.now();
+    let ok = false;
+    while (Date.now() - start < 180000) {
+      await sleep(8000);
+      const runs = await ghApi(`/repos/${GH_OWNER}/${GH_REPO}/actions/runs?per_page=3`);
+      const list = (runs.json && runs.json.workflow_runs) || [];
+      const mine = list.find((rr) => rr.path === ".github/workflows/sync.yml" || rr.name === "飞书同步到造价数据库");
+      if (mine && mine.status === "completed") {
+        if (mine.conclusion === "success") {
+          ok = true;
+          setStatus("飞书同步完成，等待网页发布…");
+        } else {
+          setStatus("同步未成功（" + mine.conclusion + "），刷新本地缓存");
+        }
+        break;
+      }
+    }
+    if (!ok && Date.now() - start >= 180000) {
+      setStatus("同步超时（仍在后台进行），先刷新本地缓存");
+    }
+    if (ok) await sleep(45000); // 等 GitHub Pages 重建完成
+    await loadData();
+  }
+
   // —— 事件绑定 ——
   function bind() {
     $("#btnSearch").onclick = () => { keyword = $("#searchInput").value.trim(); render(); };
@@ -191,7 +252,7 @@
     $("#btnClear").onclick = () => { keyword = ""; $("#searchInput").value = ""; render(); };
     $("#btnExport").onclick = exportData;
     const rb = $("#btnRefresh");
-    if (rb) rb.onclick = () => loadData();
+    if (rb) rb.onclick = () => triggerSync();
   }
 
   // —— 初始化 ——
