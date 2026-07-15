@@ -1,0 +1,179 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #f4f6f9;
+  color: #1f2733;
+  font-size: 14px;
+}
+
+.container { max-width: 1180px; margin: 0 auto; padding: 0 16px 32px; }
+
+/* 顶部工具栏 */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  flex-wrap: wrap;
+}
+.brand {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0c447c;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.badge {
+  font-size: 11px;
+  font-weight: 500;
+  background: #fff3d6;
+  color: #854f0b;
+  border: 1px solid #f3c775;
+  border-radius: 6px;
+  padding: 2px 7px;
+}
+.search-box { display: flex; gap: 8px; flex: 1; min-width: 280px; }
+.search-box input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #d6dbe2;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+.search-box input:focus { border-color: #378add; }
+.search-box button {
+  padding: 8px 14px;
+  border: 1px solid #d6dbe2;
+  background: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.search-box button:hover { background: #eef3f8; }
+.header-actions { display: flex; align-items: center; gap: 12px; margin-left: auto; }
+.btn-export {
+  background: #0c447c;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.btn-export:hover { background: #185fa5; }
+.btn-ghost {
+  background: #fff;
+  color: #0c447c;
+  border: 1px solid #b9cbe0;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.btn-ghost:hover { background: #eef3f8; }
+.status { font-size: 12px; color: #6b7480; }
+.empty-box {
+  padding: 48px 24px;
+  text-align: center;
+  color: #9aa2ad;
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+/* Tab 栏 */
+.tab-bar {
+  display: flex;
+  gap: 6px;
+  border-bottom: 2px solid #e2e7ee;
+  flex-wrap: wrap;
+}
+.tab-btn {
+  padding: 10px 16px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  color: #5f5e5a;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+}
+.tab-btn:hover { color: #0c447c; }
+.tab-btn.active { color: #0c447c; font-weight: 600; border-bottom-color: #0c447c; }
+
+/* 上下文栏 */
+.context-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  background: #fff;
+  border: 1px solid #e2e7ee;
+  border-radius: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+.context-badge {
+  font-weight: 600;
+  color: #0c447c;
+  background: #e6f1fb;
+  padding: 4px 12px;
+  border-radius: 8px;
+}
+.context-hint { font-size: 13px; color: #6b7480; flex: 1; min-width: 220px; }
+.context-stats { font-size: 13px; color: #854f0b; font-weight: 500; }
+
+/* 表格 */
+.table-wrap { margin-top: 14px; background: #fff; border: 1px solid #e2e7ee; border-radius: 10px; overflow: hidden; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.data-table th {
+  background: #f1f4f8;
+  text-align: left;
+  padding: 11px 12px;
+  font-weight: 600;
+  color: #3a4452;
+  border-bottom: 1px solid #e2e7ee;
+  white-space: nowrap;
+}
+.data-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #eef1f5;
+  color: #2b333e;
+  vertical-align: top;
+}
+.data-table tbody tr:hover { background: #f7fafc; }
+.data-table td.empty { text-align: center; color: #9aa2ad; padding: 28px; }
+
+/* 工期计算 */
+.calc-wrap { margin-top: 14px; }
+.calc-card {
+  background: #fff;
+  border: 1px solid #e2e7ee;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 460px;
+}
+.calc-card h3 { font-size: 16px; color: #0c447c; margin-bottom: 16px; }
+.calc-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.calc-row label { width: 140px; color: #5f5e5a; }
+.calc-row input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #d6dbe2;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+.calc-row input:focus { border-color: #378add; }
+.calc-result { margin-top: 14px; font-size: 15px; color: #27500a; }
+.calc-note { margin-top: 12px; font-size: 12px; color: #9aa2ad; line-height: 1.6; }
+
+/* 底部 */
+.foot { margin-top: 22px; text-align: center; font-size: 12px; color: #9aa2ad; }
+
+@media (max-width: 768px) {
+  .header-actions { margin-left: 0; width: 100%; justify-content: space-between; }
+  .search-box { min-width: 100%; }
+  .context-hint { min-width: 100%; }
+}
